@@ -1,0 +1,57 @@
+<div class="internment" *ngIf="!newIntern">
+  <div class="title">
+    <label>Boleta de internamiento</label>
+    <button mat-raised-button color="primary" (click)="newInternment()">Nuevo</button>
+  </div>
+
+  <app-pager-filter (paginadoEvent)="paginadoEvent($event)" (search)="searchSelect($event)"
+  [length]="length" [pageIndex]="pageIndex"></app-pager-filter>
+
+  <table mat-table [dataSource]="internments">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="Tipo">
+      <th mat-header-cell *matHeaderCellDef> Tipo </th>
+      <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Marca">
+      <th mat-header-cell *matHeaderCellDef> Marca </th>
+      <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Placa">
+      <th mat-header-cell *matHeaderCellDef> Placa </th>
+      <td mat-cell *matCellDef="let element"> {{element.plate}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="N° Int.">
+      <th mat-header-cell *matHeaderCellDef> N° Int. </th>
+      <td mat-cell *matCellDef="let element"> {{element.number}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Acciones">
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary" matTooltip="Editar" >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" matTooltip="Eliminar" (click)="openDialog('300ms', '150ms', element)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons
+          aria-label="Select page of periodic elements">
+  </mat-paginator> -->
+</div>
+<app-new-internment *ngIf="newIntern" (backInternment)="backInternment($event)"></app-new-internment>

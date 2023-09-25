@@ -1,0 +1,26 @@
+<div class="card">
+
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>Ordenar por:</mat-label>
+    <mat-select [formControl]="filtrosSelect">
+      <mat-option *ngFor="let filtro of filtros" [value]="filtro.valor">
+        {{filtro.nombre}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field> -->
+
+  <mat-form-field appearance="outline">
+    <input matInput type="text" placeholder="N° de internamiento..." [formControl]="searchSelect" (keyup.enter)="obtenerValor()">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+  <mat-paginator
+  [pageIndex]="pageIndex"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    [length]="length"
+    [showFirstLastButtons]="true"
+    (page)="paginaEvento($event)">
+  </mat-paginator>
+
+</div>

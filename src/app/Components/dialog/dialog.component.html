@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Eliminar</h1>
+<div mat-dialog-content>
+  Está seguro que desea eliminar este internamiento?
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close [mat-dialog-close]="data.id">No</button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="delete()">Si</button>
+</div>

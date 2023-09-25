@@ -1,0 +1,16 @@
+.internment{
+  display: flex;
+  // align-items: center;
+  flex-direction: column;
+  padding-top: 20px;
+  row-gap: 30px;
+  .title{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    align-items: center;
+    label{
+      font-size: 20px;
+    }
+  }
+}

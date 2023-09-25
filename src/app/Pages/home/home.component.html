@@ -1,0 +1,25 @@
+<div class="home">
+  <div class="content">
+    <div class="left">
+      <label>Menu</label>
+      <ul>
+        <li [ngStyle]="numericSidebar == 1 ? {'background':'#C7C7C7'}:{'background':'none'} "><button (click)="statusSidebar(1)" >Boleta de internamiento</button></li>
+        <li [ngStyle]="numericSidebar == 2 ? {'background':'#C7C7C7'}:{'background':'none'} "><button (click)="statusSidebar(2)" >Sección 2</button></li>
+        <li [ngStyle]="numericSidebar == 3 ? {'background':'#C7C7C7'}:{'background':'none'} "><button (click)="statusSidebar(3)" >Sección 3</button></li>
+        <li [ngStyle]="numericSidebar == 4 ? {'background':'#C7C7C7'}:{'background':'none'} "><button (click)="statusSidebar(4)" >Sección 4</button></li>
+      </ul>
+    </div>
+    <div class="right">
+      <h1>Sistema de administración y reconocimiento de placas de rodaje</h1>
+      <!-- <router-outlet></router-outlet> -->
+      <div class="botton">
+        <div class="menu1" *ngIf="numericSidebar == 1" >
+          <app-internment></app-internment>
+        </div>
+        <div class="menu2" *ngIf="numericSidebar == 2" >Hola 2</div>
+        <div class="menu3" *ngIf="numericSidebar == 3" >Hola 3</div>
+        <div class="menu4" *ngIf="numericSidebar == 4" >Hola 4</div>
+      </div>
+    </div>
+  </div>
+</div>
