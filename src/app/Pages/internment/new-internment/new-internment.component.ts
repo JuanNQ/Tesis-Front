@@ -47,12 +47,17 @@ export class NewInternmentComponent implements OnInit {
       this.formInternment.get('admission_ticket.vehicle.brand')?.disable();
       this.formInternment.get('admission_ticket.vehicle.plate')?.disable();
       this.formInternment.get('admission_ticket.vehicle.color')?.disable();
+      this.formInternment.get('infraction')?.disable();
 
 
   }
 
   back(){
     this.backInternment.emit(false);
+  }
+
+  save(){
+
   }
 
   typeChange(value: any) {
@@ -66,6 +71,10 @@ export class NewInternmentComponent implements OnInit {
   }
   colorChange(value: any) {
     this.formInternment.get('admission_ticket.vehicle.color')?.setValue(value.target.value);
+  }
+
+  infractionChange(value: any){
+    this.formInternment.get('infraction')?.setValue(value);
   }
 
   builderInternment(){
