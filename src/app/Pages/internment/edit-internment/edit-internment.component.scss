@@ -1,0 +1,20 @@
+.new-internment{
+  padding: 20px;
+  .control{
+    display: flex;
+    justify-content: space-between;
+    button{
+      margin-bottom: 20px;
+      // background-color: var(--hospital-green);
+    }
+  }
+  .title{
+    padding: 16px 0;
+  }
+  .style-form{
+    column-gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+}

@@ -1,4 +1,4 @@
-<div class="internment" *ngIf="!newIntern">
+<div class="internment" *ngIf="!newIntern && !editIntern">
   <div class="title">
     <label>Boleta de internamiento</label>
     <button mat-raised-button color="primary" (click)="newInternment()">Nuevo</button>
@@ -36,7 +36,7 @@
     <ng-container matColumnDef="Acciones">
       <th mat-header-cell *matHeaderCellDef> Acciones </th>
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button color="primary" matTooltip="Editar" >
+        <button mat-icon-button color="primary" matTooltip="Editar" (click)="edit(element)">
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-icon-button color="primary" matTooltip="Eliminar" (click)="openDialog('300ms', '150ms', element)">
@@ -55,3 +55,4 @@
   </mat-paginator> -->
 </div>
 <app-new-internment *ngIf="newIntern" (backInternment)="backInternment($event)"></app-new-internment>
+<app-edit-internment *ngIf="editIntern" (backInternment)="backInternment($event)" [idInternment]="idInterment"></app-edit-internment>

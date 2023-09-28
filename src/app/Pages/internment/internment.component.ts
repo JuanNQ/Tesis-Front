@@ -24,7 +24,9 @@ export class InternmentComponent implements OnInit {
   // filtro: number = 0;
   search: string = '';
   internments : any = '';
-  @Input() newIntern : boolean = false;
+  newIntern : boolean = false;
+  editIntern : boolean = false;
+  idInterment : number = 0;
   // @Input() backNewIntern = false;
 
 
@@ -77,11 +79,18 @@ export class InternmentComponent implements OnInit {
     });
   }
 
+  edit(object: any){
+    console.log(object);
+    this.idInterment = object.id;
+    this.editIntern = true;
+  }
+
   newInternment(){
     this.newIntern = true;
   }
   backInternment(estado: boolean){
     this.newIntern = estado;
+    this.editIntern = estado;
   }
 
   formatDate(d: Date) {
