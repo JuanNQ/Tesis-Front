@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter, OnInit} from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { VehicleService } from "src/app/service/vehicle.service";
 import { InfractionService } from "src/app/service/infraction.service";
+import { InternmentService } from "src/app/service/internment.service";
 
 @Component({
   selector: 'app-new-internment',
@@ -25,6 +26,7 @@ export class NewInternmentComponent implements OnInit {
     private formBuilder:FormBuilder,
     private vehicleService:VehicleService,
     private infractionService:InfractionService,
+    private internmentService:InternmentService,
   ){
     this.builderInternment();
   }
@@ -57,6 +59,18 @@ export class NewInternmentComponent implements OnInit {
   }
 
   save(){
+    if (this.formInternment.valid) {
+      this.formInternment.get('infraction')?.enable();
+      this.formInternment.get('admission_ticket.vehicle.type')?.enable();
+      this.formInternment.get('admission_ticket.vehicle.brand')?.enable();
+      this.formInternment.get('admission_ticket.vehicle.plate')?.enable();
+      this.formInternment.get('admission_ticket.vehicle.color')?.enable();
+      this.internmentService.saveInfraction(this.formInternment.value).subscribe( data => {
+        console.log(data);
+        this.backInternment.emit(false);
+      })
+      console.log(this.formInternment.value);
+    }
 
   }
 
@@ -80,10 +94,10 @@ export class NewInternmentComponent implements OnInit {
   builderInternment(){
     this.formInternment = this.formBuilder.group({
       vehicle: this.formBuilder.group({
-        type: ['',Validators.required],
-        brand: ['',Validators.required],
-        plate: ['',Validators.required],
-        color: ['']
+        type: [0,Validators.required],
+        brand: [0,Validators.required],
+        plate: [''],
+        color: ['',Validators.required]
       }),
       admission_ticket: this.formBuilder.group({
         owner : this.formBuilder.group({
@@ -95,12 +109,12 @@ export class NewInternmentComponent implements OnInit {
         remitter : this.formBuilder.group({
           authority : ['',Validators.required],
           ballot : ['',Validators.required],
-          infraction : [''],
+          infraction : [0],
         }),
         vehicle: this.formBuilder.group({
-          type: ['',Validators.required],
-          brand: ['',Validators.required],
-          plate: ['',Validators.required],
+          type: [0,Validators.required],
+          brand: [0,Validators.required],
+          plate: [''],
           color: ['',Validators.required]
         }),
         number : ['',Validators.required],
@@ -108,7 +122,7 @@ export class NewInternmentComponent implements OnInit {
         in_charge : ['',Validators.required],
       }),
       freedom_number : [''],
-      infraction : ['']
+      infraction : [0]
     })
   }
 
