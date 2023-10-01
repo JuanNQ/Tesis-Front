@@ -14,7 +14,7 @@
       padding-top: 50px;
       row-gap: 40px;
       label{
-        font-size: 20px;
+        font-size: 25px;
       }
       ul{
         padding: 0;
@@ -43,6 +43,27 @@
         border-bottom: 2px solid var(--very-light-pink);
         font-size: 24px;
       }
+    }
+  }
+}
+
+.snapshot {
+  // text-align: center;
+  padding: 0 20px;
+  .result{
+    display: flex;
+    padding: 20px 0;
+    column-gap: 20px;
+    justify-content: space-around;
+    img {
+      width: 600px;
+      height: 400px;
+    }
+    label{
+      font-weight: bolder;
+    }
+    p{
+      margin: 10px 0;
     }
   }
 }

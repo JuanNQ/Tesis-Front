@@ -36,6 +36,10 @@ export class InternmentService {
     return this.httpClient.get<any>(`${this.url}/getInternment/${id}`,{headers:this.httpOptions.headers});
   }
 
+  public getInternmentByPlate(plate: String){
+    return this.httpClient.get<any>(`${this.url}/getInternmentByPlate/${plate}`,{headers:this.httpOptions.headers});
+  }
+
   public saveInfraction(body: any){
     return this.httpClient.post<any>(`${this.url}/saveInternment`,body, {headers:this.httpOptions.headers});
   }

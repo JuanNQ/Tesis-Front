@@ -4,9 +4,9 @@
       <label>Menu</label>
       <ul>
         <li [ngStyle]="numericSidebar == 1 ? {'background':'#C7C7C7'}:{'background':'none'} "><button (click)="statusSidebar(1)" >Boleta de internamiento</button></li>
-        <li [ngStyle]="numericSidebar == 2 ? {'background':'#C7C7C7'}:{'background':'none'} "><button (click)="statusSidebar(2)" >Sección 2</button></li>
-        <li [ngStyle]="numericSidebar == 3 ? {'background':'#C7C7C7'}:{'background':'none'} "><button (click)="statusSidebar(3)" >Sección 3</button></li>
-        <li [ngStyle]="numericSidebar == 4 ? {'background':'#C7C7C7'}:{'background':'none'} "><button (click)="statusSidebar(4)" >Sección 4</button></li>
+        <li [ngStyle]="numericSidebar == 2 ? {'background':'#C7C7C7'}:{'background':'none'} "><button (click)="statusSidebar(2)" >Almacen de vehículos</button></li>
+        <!-- <li [ngStyle]="numericSidebar == 3 ? {'background':'#C7C7C7'}:{'background':'none'} "><button (click)="statusSidebar(3)" >Sección 3</button></li>
+        <li [ngStyle]="numericSidebar == 4 ? {'background':'#C7C7C7'}:{'background':'none'} "><button (click)="statusSidebar(4)" >Sección 4</button></li> -->
       </ul>
     </div>
     <div class="right">
@@ -16,9 +16,38 @@
         <div class="menu1" *ngIf="numericSidebar == 1" >
           <app-internment></app-internment>
         </div>
-        <div class="menu2" *ngIf="numericSidebar == 2" >Hola 2</div>
-        <div class="menu3" *ngIf="numericSidebar == 3" >Hola 3</div>
-        <div class="menu4" *ngIf="numericSidebar == 4" >Hola 4</div>
+        <div class="menu2" *ngIf="numericSidebar == 2" >
+          <app-camera (pictureTaken)="handleImage($event)"></app-camera>
+          <div class="snapshot" *ngIf="webcamImage">
+            <h3>Resultados</h3>
+            <div class="result">
+              <img [src]="webcamImage.imageAsDataUrl" />
+              <div>
+                <label>Placa vehícular: </label>
+                <p> {{plate}} </p>
+                <h5 *ngIf="!validInternment && existPlate">No existe vehículo en la base de datos</h5>
+                <div class="data" *ngIf="validInternment">
+                  <label>Tipo de vehículo: </label>
+                  <p> {{internment.vehicleEntity.vehicleTypeEntity.name}} </p>
+                  <label>Marca de vehículo: </label>
+                  <p> {{internment.vehicleEntity.vehicleBrandEntity.brand}} </p>
+                  <label>Color de vehículo: </label>
+                  <p> {{internment.vehicleEntity.color}} </p>
+                  <label>Nombres: </label>
+                  <p> {{internment.admissionTicketEntity.ownerEntity.name}} </p>
+                  <label>Apellidos: </label>
+                  <p> {{internment.admissionTicketEntity.ownerEntity.lastname}} </p>
+                  <label style="background-color: greenyellow;" *ngIf="validFreedom; else elseBlock">Cancelado</label>
+                  <ng-template #elseBlock>
+                    <label style="background-color: brown;">Sin Cancelar</label>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="menu3" *ngIf="numericSidebar == 3" >Hola 3</div>
+        <div class="menu4" *ngIf="numericSidebar == 4" >Hola 4</div> -->
       </div>
     </div>
   </div>
