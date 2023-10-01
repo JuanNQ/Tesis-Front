@@ -40,4 +40,8 @@ export class InternmentService {
     return this.httpClient.post<any>(`${this.url}/saveInternment`,body, {headers:this.httpOptions.headers});
   }
 
+  public putInfraction(body: any, id: number){
+    return this.httpClient.put<any>(`${this.url}/putInternment/${id}`,body, {headers:this.httpOptions.headers});
+  }
+
 }

@@ -56,8 +56,10 @@ export class InternmentComponent implements OnInit {
     this.minDate = new Date(this.dateTime.getFullYear() - 0, this.dateTime.getMonth(), this.dateTime.getDate());
     this.internmentService.getListInternment(this.pageSize,this.pageIndex,this.search).subscribe( data => {
       console.log(data);
-      this.internments = data.content;
-      this.length = data.totalElements;
+      if (data != null) {
+        this.internments = data.content;
+        this.length = data.totalElements;
+      }
     })
   }
 
@@ -72,8 +74,10 @@ export class InternmentComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result==null || result=='') {
         this.internmentService.getListInternment(this.pageSize,this.pageIndex,this.search).subscribe( data => {
-          this.internments = data.content;
-          this.length = data.totalElements;
+          if (data != null) {
+            this.internments = data.content;
+            this.length = data.totalElements;
+          }
         })
       }
     });
@@ -91,6 +95,13 @@ export class InternmentComponent implements OnInit {
   backInternment(estado: boolean){
     this.newIntern = estado;
     this.editIntern = estado;
+    this.internmentService.getListInternment(this.pageSize,this.pageIndex,this.search).subscribe(data=>{
+      if (data != null) {
+        this.internments = data.content;
+        this.length = data.totalElements;
+      }
+      console.log(data);
+    })
   }
 
   formatDate(d: Date) {
@@ -156,8 +167,10 @@ export class InternmentComponent implements OnInit {
     console.log("searchSelect");
 
       this.internmentService.getListInternment(this.pageSize,this.pageIndex,this.search).subscribe(data=>{
-        this.internments = data.content;
-        this.length = data.totalElements;
+        if (data != null) {
+          this.internments = data.content;
+          this.length = data.totalElements;
+        }
         console.log(data);
       })
 
@@ -171,8 +184,10 @@ export class InternmentComponent implements OnInit {
     this.pageSize = paginaOutput.pageSize;
     console.log("paginadoEvent");
       this.internmentService.getListInternment(this.pageSize,this.pageIndex,this.search).subscribe(data=>{
-        this.internments = data.content;
-        this.length = data.totalElements;
+        if (data != null) {
+          this.internments = data.content;
+          this.length = data.totalElements;
+        }
         console.log(data);
       })
   }
